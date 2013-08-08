@@ -6,8 +6,8 @@ function App () {
   var self = this
 
   var opts = {
-    name: 'Simple App',
-    port: 9000,
+    name: 'Reverie',
+    port: 9999,
     dbPath: path.join(__dirname, './app-db'),
     cookieSecret: 'secret'
   }
