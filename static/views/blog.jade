@@ -1,0 +1,10 @@
+extends base
+
+block head
+  title #{blogger.username}'s blog
+
+block content
+  h1 #{blogger.username}'s blog
+  - each post in posts
+    div.post
+      div.contents #{post.contents}

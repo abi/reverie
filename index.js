@@ -39,6 +39,33 @@ App.prototype.init = function () {
       res.redirect('/' + username)
     })
   })
+
+  app.get('/:username', function (req, res) {
+    var username = req.params.username
+    self.db.get('user~' + username, function (err, blogger) {
+      if (err && err.name === 'NotFoundError') {
+        res.render('404')
+      } else if (err) {
+        res.send(500, {error: err})
+      } else {
+        var posts = []
+        self.db.createReadStream({
+          start     : 'post~' + username,
+          end       : 'post~' + username + '\xFF',
+          limit     : 10
+        })
+        .on('data', function (data) {
+          posts.push(data.value)
+        })
+        .on('end', function () {
+          res.render('blog', {posts: posts, blogger: blogger})
+        })
+        .on('error', function (err) {
+          res.send(500, {error: err})
+        })
+      }
+    })
+  })
 }
 
 /* Start the app */
