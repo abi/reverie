@@ -50,9 +50,10 @@ App.prototype.init = function () {
       } else {
         var posts = []
         self.db.createReadStream({
-          start     : 'post~' + username,
-          end       : 'post~' + username + '\xFF',
-          limit     : 10
+          start     : 'post~' + username + '\xFF',
+          end       : 'post~' + username,
+          limit     : 10,
+          reverse   : true // TODO: This is slow so use better keys
         })
         .on('data', function (data) {
           posts.push(data.value)
