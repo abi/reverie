@@ -22,15 +22,13 @@ App.prototype.init = function () {
   var self = this
   var app = self.app
 
-  app.get('/new', function (req, res) {
+  app.get('/new', self.auth, function (req, res) {
     res.render('new')
   })
 
-  app.post('/new', function (req, res) {
+  app.post('/new', self.auth, function (req, res) {
     // TODO: Store the post in LevelDb
-    console.log(req.body)
-    res.redirect('/' + req.user)
-    //self.db.put(req.user + '~' + )
+    res.redirect('/' + req.user.username)
   })
 }
 
