@@ -14,6 +14,7 @@ html
         if user
           script.
             var _csrf = '#{token}'
+          a#new(href='/new') new post
           a#logout(href='javascript:void(0)') logout
         else
           a(href='/login') login

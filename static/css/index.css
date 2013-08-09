@@ -105,3 +105,10 @@ li.error-msg {
   background: #DDD;
   padding: 5px;
 }
+
+/* New post page */
+
+textarea#post {
+  width: 500px;
+  height: 300px;
+}

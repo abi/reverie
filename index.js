@@ -25,6 +25,13 @@ App.prototype.init = function () {
   app.get('/new', function (req, res) {
     res.render('new')
   })
+
+  app.post('/new', function (req, res) {
+    // TODO: Store the post in LevelDb
+    console.log(req.body)
+    res.redirect('/' + req.user)
+    //self.db.put(req.user + '~' + )
+  })
 }
 
 /* Start the app */
