@@ -22,8 +22,8 @@ App.prototype.init = function () {
   var self = this
   var app = self.app
 
-  app.get('/hello', function (req, res) {
-    res.end('Hello.')
+  app.get('/new', function (req, res) {
+    res.render('new')
   })
 }
 
