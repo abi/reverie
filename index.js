@@ -27,8 +27,17 @@ App.prototype.init = function () {
   })
 
   app.post('/new', self.auth, function (req, res) {
-    // TODO: Store the post in LevelDb
-    res.redirect('/' + req.user.username)
+    var now = Date.now()
+    var username = req.user.username
+    var key = 'post~' + username + '~' + now
+
+    var value = req.body
+    value.created = now
+    delete value._csrf
+
+    self.db.put(key, value, function (err) {
+      res.redirect('/' + username)
+    })
   })
 }
 
