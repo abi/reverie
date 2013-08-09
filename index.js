@@ -53,7 +53,7 @@ App.prototype.init = function () {
           start     : 'post~' + username + '\xFF',
           end       : 'post~' + username,
           limit     : 10,
-          reverse   : true // TODO: This is slow so use better keys
+          reverse   : true
         })
         .on('data', function (data) {
           posts.push(data.value)
