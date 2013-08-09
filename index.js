@@ -1,3 +1,4 @@
+var concat = require('concat-stream')
 var debug = require('debug')('test-app')
 var path = require('path')
 var SimpleApp = require('./lib/SimpleApp')
@@ -48,20 +49,23 @@ App.prototype.init = function () {
       } else if (err) {
         res.send(500, {error: err})
       } else {
-        var posts = []
-        self.db.createReadStream({
+        var posts = self.db.createReadStream({
           start     : 'post~' + username + '\xFF',
           end       : 'post~' + username,
           limit     : 10,
           reverse   : true
         })
-        .on('data', function (data) {
-          posts.push(data.value)
-        })
-        .on('end', function () {
+
+        posts.pipe(concat(function (data) {
+          if (!data) {
+            var posts = []
+          } else {
+            var posts = data.map(function (d) { return d.value })
+          }
           res.render('blog', {posts: posts, blogger: blogger})
-        })
-        .on('error', function (err) {
+        }))
+
+        posts.on('error', function (err) {
           res.send(500, {error: err})
         })
       }
