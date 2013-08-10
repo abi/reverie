@@ -2,6 +2,7 @@ var concat = require('concat-stream')
 var debug = require('debug')('test-app')
 var path = require('path')
 var SimpleApp = require('./lib/SimpleApp')
+var timeago = require('timeago')
 
 function App () {
   var self = this
@@ -22,6 +23,10 @@ App.prototype = Object.create(SimpleApp.prototype)
 App.prototype.init = function () {
   var self = this
   var app = self.app
+
+  app.locals.timeago = function (ts) {
+    return timeago(new Date(ts))
+  }
 
   app.get('/new', self.auth, function (req, res) {
     res.render('new')
