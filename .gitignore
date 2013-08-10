@@ -31,6 +31,10 @@ results
 
 npm-debug.log
 
+# Ignore binary files in npm modules
+build
+out
+
 # Bower
 components
 
