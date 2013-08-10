@@ -1,6 +1,6 @@
 body {
-  font-size: 14px;
   font-family: 'proxima-nova', 'Helvetica';
+  font-size: 14px;
   margin: 0px 50px 0px 200px;
   width: 1000px;
 }
@@ -8,8 +8,8 @@ body {
 /* Links */
 
 a {
-  text-decoration: none;
   color: #A60000;
+  text-decoration: none;
 }
 
 a:hover {
@@ -39,8 +39,8 @@ h1 {
 }
 
 .field #submit {
-  margin-top: 20px;
   margin-left: 250px;
+  margin-top: 20px;
   width: auto;
 }
 
@@ -51,8 +51,8 @@ h1 {
 }
 
 #navbar h2 {
-  width: auto;
   display: inline-block;
+  width: auto;
 }
 
 #navbar #user-nav {
@@ -71,8 +71,8 @@ h1 {
 }
 
 #navbar .divider {
-  display: inline-block;
   border-left: 1px solid black;
+  display: inline-block;
   padding: 0px;
 }
 
@@ -96,36 +96,31 @@ h2.logo a:hover {
 /* Login/register pages */
 
 ul.error-msgs {
-  padding: 0px;
   margin: 0px 0px 20px 0px;
+  padding: 0px;
 }
 
 li.error-msg {
-  list-style-type: none;
-  border: 1px solid red;
   background: #DDD;
+  border: 1px solid red;
+  list-style-type: none;
   padding: 5px;
 }
 
 /* New post page */
 
 textarea#post {
-  width: 500px;
   height: 300px;
+  width: 500px;
 }
 
 /* Blog page */
-.blog-page {
-}
-
-.blog-page #navbar {
-}
 
 .blog-page .post {
-  width: 500px;
-  margin-bottom: 30px;
-  line-height: 1.4em;
   font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 50px;
+  width: 500px;
 }
 
 .blog-page .created span {
