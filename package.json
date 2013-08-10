@@ -18,7 +18,8 @@
     "level": "0.12.x",
     "marked": "0.2.x",
     "passport": "0.1.x",
-    "passport-local": "0.1.x"
+    "passport-local": "0.1.x",
+    "timeago": "~0.1.0"
   },
   "devDependencies": {
     "nodemon": "*",
