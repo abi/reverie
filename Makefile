@@ -12,3 +12,6 @@ update-deps:
 .PHONY : test
 test:
 	./node_modules/.bin/mocha
+
+deploy:
+	npm rebuild
