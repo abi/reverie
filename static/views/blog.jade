@@ -8,6 +8,7 @@ block content
     h1 #{blogger.username}'s blog
     - each post in posts
       div.post
-        div.contents #{post.contents}
+        div.contents
+          != markdown(post.contents)
         div.created
           span #{timeago(post.created)}

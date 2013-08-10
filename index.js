@@ -1,5 +1,6 @@
 var concat = require('concat-stream')
 var debug = require('debug')('test-app')
+var marked = require('marked')
 var path = require('path')
 var SimpleApp = require('./lib/SimpleApp')
 var timeago = require('timeago')
@@ -26,6 +27,10 @@ App.prototype.init = function () {
 
   app.locals.timeago = function (ts) {
     return timeago(new Date(ts))
+  }
+
+  app.locals.markdown = function (str) {
+    return marked(str)
   }
 
   app.get('/new', self.auth, function (req, res) {
