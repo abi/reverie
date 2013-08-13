@@ -13,5 +13,13 @@ update-deps:
 test:
 	./node_modules/.bin/mocha
 
+
+.PHONY : deploy
 deploy:
+	ssh abi@66.175.221.170 -p 33333 make -f /home/abi/reverie deploy-local
+
+.PHONY : deploy-local
+deploy-local:
+	git pull
 	npm rebuild
+	sudo supervisorctl reload && sleep 3 && sudo supervisorctl restart all
