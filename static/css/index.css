@@ -1,19 +1,19 @@
 body {
-  font-family: 'proxima-nova', 'Helvetica';
+  font-family: 'Fauna One', 'Times New Roman', serif;
   font-size: 14px;
-  margin: 0px 50px 0px 200px;
-  width: 1000px;
+  margin: 0px auto 0px 150px;
+  width: 480px;
 }
 
 /* Links */
 
 a {
-  color: #A60000;
+  color: #94002D;
   text-decoration: none;
 }
 
 a:hover {
-  border-bottom: 1px solid #A60000;
+  border-bottom: 1px solid #94002D;
   color: #333;
 }
 
@@ -48,6 +48,9 @@ h1 {
 
 #navbar {
   border-bottom: 1px solid black;
+  font-size: 13px;
+  /*background: #CCC;*/
+  /*padding: 0px 10px;*/
 }
 
 #navbar h2 {
@@ -57,7 +60,7 @@ h1 {
 
 #navbar #user-nav {
   float: right;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 #navbar #user-nav a {
@@ -79,18 +82,17 @@ h1 {
 /* Logo */
 
 h2.logo {
-  font-size: 18px;
-  font-weight: 100;
-  margin: 15px 0px 15px 0px;
+  font-size: 1em;
+  margin: 17px 0px 15px 0px;
 }
 
 h2.logo a {
-  color: #A60000;
+  color: #94002D;
 }
 
 h2.logo a:hover {
   border-bottom: 0px;
-  color: #A60000;
+  color: #94002D;
 }
 
 /* Login/register pages */
@@ -116,11 +118,27 @@ textarea#post {
 
 /* Blog page */
 
+.blog-page .title {
+  color: #333;
+  font-size: 3.5em;
+  font-weight: bold;
+  letter-spacing: -3px;
+  margin: 60px 0px 100px 0px;
+}
+
 .blog-page .post {
-  font-size: 12px;
-  line-height: 1.4em;
+  border-bottom: 1px solid #CCC;
+  color: #333;
+  font-family: 'Tenor Sans', Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
   margin-bottom: 50px;
-  width: 500px;
+  padding-right: 10px;
+  width: 480px;
+}
+
+.blog-page .created {
+  min-height: 20px;
 }
 
 .blog-page .created span {
