@@ -14,11 +14,15 @@ update-deps:
 test:
 	./node_modules/.bin/mocha
 
+.PHONY : rebuild
+rebuild:
+	npm rebuild
+
 .PHONY : deploy
 deploy:
 	ssh abi@66.175.221.170 -p 33333 make -f $(app_dir)/Makefile deploy-local
 
 .PHONY : deploy-local
 deploy-local:
-	cd $(app_dir) && git pull && npm rebuild
+	cd $(app_dir) && git pull
 	sudo supervisorctl reload && sleep 3 && sudo supervisorctl restart all
