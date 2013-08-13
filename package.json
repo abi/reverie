@@ -5,7 +5,7 @@
   "description": "Simple Express-based web app with authentication support",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PeerCDN/node-simple-app"
+    "url": "https://github.com/abi/reverie"
   },
   "dependencies": {
     "bcrypt": "~0.7.6",
