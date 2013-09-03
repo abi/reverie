@@ -1,6 +1,7 @@
 var concat = require('concat-stream')
 var debug = require('debug')('test-app')
 var marked = require('marked')
+var models = require('./models')
 var path = require('path')
 var SimpleApp = require('./lib/SimpleApp')
 var timeago = require('timeago')
@@ -39,44 +40,34 @@ App.prototype.init = function () {
 
   app.post('/new', self.auth, function (req, res) {
     var now = Date.now()
-    var username = req.user.username
-    var key = 'post~' + username + '~' + now
 
-    var value = req.body
-    value.created = now
-    delete value._csrf
+    var post = new models.Post({
+      contents: req.body.contents,
+      user: req.user
+    })
 
-    self.db.put(key, value, function (err) {
-      res.redirect('/' + username)
+    post.save(function (err, post) {
+      if (err) {
+        next(err)
+      } else {
+        res.redirect('/' + req.user.username)
+      }
     })
   })
 
   app.get('/:username', function (req, res) {
     var username = req.params.username
-    self.db.get('user~' + username, function (err, blogger) {
-      if (err && err.name === 'NotFoundError') {
+    models.User.findOne({username: username}, function (err, blogger) {
+      if (blogger === null) {
         res.render('404')
       } else if (err) {
         res.send(500, {error: err})
       } else {
-        var posts = self.db.createReadStream({
-          start     : 'post~' + username + '\xFF',
-          end       : 'post~' + username,
-          limit     : 10,
-          reverse   : true
-        })
-
-        posts.pipe(concat(function (data) {
-          if (!data) {
-            var posts = []
-          } else {
-            var posts = data.map(function (d) { return d.value })
-          }
+        models.Post
+          .find({user: blogger})
+          .sort('-created').limit(10)
+          .exec(function (err, posts) {
           res.render('blog', {posts: posts, blogger: blogger})
-        }))
-
-        posts.on('error', function (err) {
-          res.send(500, {error: err})
         })
       }
     })
