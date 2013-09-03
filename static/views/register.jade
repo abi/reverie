@@ -14,8 +14,14 @@ block content
     form(method='POST')
       input(type='hidden', name='_csrf', value=token)
       .field
+        label name
+        input#name(type='text', name='name')
+      .field
         label username
         input#username(type='text', name='username')
+      .field
+        label email
+        input#email(type='text', name='email')
       .field
         label password
         input#password(type='password', name='password')
