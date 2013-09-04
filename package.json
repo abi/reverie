@@ -16,7 +16,6 @@
     "express": "*",
     "express-validator": "*",
     "jade": "*",
-    "level": "*",
     "marked": "*",
     "MD5": "*",
     "mongoose": "*",
