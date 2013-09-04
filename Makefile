@@ -25,9 +25,4 @@ rebuild:
 
 .PHONY : deploy
 deploy:
-	ssh abi@66.175.221.170 -p 33333 make -f $(APP_DIR)/Makefile deploy-local
-
-.PHONY : deploy-local
-deploy-local:
-	cd $(APP_DIR) && git pull
-	sudo supervisorctl reload && sleep 3 && sudo supervisorctl restart all
+	ssh -t abi@$(SERVER_IP) -p 33333 'cd $(APP_DIR) && git pull && sudo supervisorctl reload && sleep 3 && sudo supervisorctl restart all'
