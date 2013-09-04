@@ -74,7 +74,7 @@ App.prototype.init = function () {
   app.post('/editComplete', self.auth, function (req, res) {
     var id = req.body.id
     var contents = req.body.contents
-    models.Post.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id), user: req.user}, {contents: contents}, function (err, post) {
+    models.Post.findOneAndUpdate({_id: id, user: req.user}, {contents: contents}, function (err, post) {
       if (err || post === null) {
         if (err) {
           console.error(err)
@@ -88,6 +88,24 @@ App.prototype.init = function () {
     })
   })
 
+  app.post('/post/delete', self.auth, function (req, res) {
+    var id = req.body.id
+    models.Post.findOneAndRemove({_id: id, user: req.user}, function (err, post) {
+      // TODO: Abstract with /editComplete
+      if (err || post === null) {
+        if (err) {
+          console.error(err)
+        } else {
+          console.error(new Error('Post #' + id + ' could not found.'))
+        }
+        res.render('error', {error: 'Oops, something bad happening. We\' looking into it. Sorry!'})
+      } else {
+        res.redirect('/' + req.user.username)
+      }
+    })
+  })
+
+  // Blog page
   app.get('/:username', function (req, res) {
     var username = req.params.username
     models.User.findOne({username: username}, function (err, blogger) {
