@@ -8,6 +8,7 @@ block content
   h1.header.logo Why use Reverie? Because Reverie is fucking awesome.
   if user
     h2 Logged in as #{user.username}
+    a(href='/#{user.username}') View your blog
   else
     div
       a(href='/register') Register
