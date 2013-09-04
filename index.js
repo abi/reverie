@@ -2,6 +2,7 @@ var concat = require('concat-stream')
 var debug = require('debug')('test-app')
 var marked = require('marked')
 var models = require('./models')
+var mongoose = require('mongoose')
 var path = require('path')
 var SimpleApp = require('./lib/SimpleApp')
 var timeago = require('timeago')
@@ -55,6 +56,38 @@ App.prototype.init = function () {
     })
   })
 
+  app.post('/edit', self.auth, function (req, res) {
+    var id = req.body.id
+    models.Post.findById(id, function (err, post) {
+      if (post === null || post.user.toString() !== req.user.id) {
+        console.error(new Error('Post #' + id + ' could not found.'))
+        res.render('error', {error: 'That post could not be found. Did you delete it perhaps?'})
+      } else if (err) {
+        console.error(err)
+        res.render('error', {error: 'Oops, something bad happening. We\' looking into it. Sorry!'})
+      } else {
+        res.render('edit', {post: post})
+      }
+    })
+  })
+
+  app.post('/editComplete', self.auth, function (req, res) {
+    var id = req.body.id
+    var contents = req.body.contents
+    models.Post.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id), user: req.user}, {contents: contents}, function (err, post) {
+      if (err || post === null) {
+        if (err) {
+          console.error(err)
+        } else {
+          console.error(new Error('Post #' + id + ' could not found.'))
+        }
+        res.render('error', {error: 'Oops, something bad happening. We\' looking into it. Sorry!'})
+      } else {
+        res.redirect('/' + req.user.username)
+      }
+    })
+  })
+
   app.get('/:username', function (req, res) {
     var username = req.params.username
     models.User.findOne({username: username}, function (err, blogger) {
@@ -67,7 +100,9 @@ App.prototype.init = function () {
           .find({user: blogger})
           .sort('-created').limit(10)
           .exec(function (err, posts) {
-          res.render('blog', {posts: posts, blogger: blogger})
+          res.render('blog', {posts: posts,
+                              blogger: blogger,
+                              isBlogger: req.user ? (req.user.id === blogger.id) : false})
         })
       }
     })

@@ -1,0 +1,14 @@
+extends base
+
+block head
+  title Reverie - Edit post
+
+block content
+  h2 Edit post
+  form(method='POST', action='/editComplete')
+    input(type='hidden', name='_csrf', value=token)
+    input(type='hidden', name='id', value='#{post.id}')
+    .field
+      textarea#post(name='contents') #{post.contents}
+    .field
+      input(type='submit', value='post')

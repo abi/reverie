@@ -137,11 +137,15 @@ textarea#post {
   width: 480px;
 }
 
-.blog-page .created {
+.blog-page .post .bottom {
   min-height: 20px;
 }
 
-.blog-page .created span {
+.blog-page .post .bottom .edit-btn {
+  float: left;
+}
+
+.blog-page .post .bottom .created {
   color: #666;
   float: right;
   font-size: 10px;
