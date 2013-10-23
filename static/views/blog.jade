@@ -7,13 +7,4 @@ block content
   .blog-page
     h1.title #{blogger.username}'s blog
     - each post in posts
-      div.post
-        div.contents
-          != markdown(post.contents)
-        div.bottom
-          if isBlogger
-            form(method='POST', action='/edit')
-              input(type='hidden', name='_csrf', value=token)
-              input(type='hidden', name='id', value=post.id)
-              input.edit-btn(type='submit', value='edit')
-          span.created #{timeago(post.created)}
+      +post(post, isBlogger)

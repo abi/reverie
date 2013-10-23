@@ -105,6 +105,26 @@ App.prototype.init = function () {
     })
   })
 
+  app.get('/post/:id', function (req, res) {
+    var id = req.params.id
+    models.Post.findOne()
+          .where('_id').equals(id)
+          .populate({path: 'user', model: models.User}).exec(function (err, post) {
+      var idCastError = err &&
+                        (err.name === 'CastError') &&
+                        (err.type === 'ObjectId')
+
+      if (post === null || idCastError) {
+        res.render('error', {error: 'Post #' + id + ' could not found.'})
+      } else if (err) {
+        d(err)
+        res.render('error', {error: 'Oops, something bad happening. We\' looking into it. Sorry!'})
+      } else {
+        res.render('post', {post: post, isBlogger: req.user ? (req.user.id === post.user.id) : false})
+      }
+    })
+  })
+
   // Blog page
   app.get('/:username', function (req, res) {
     var username = req.params.username

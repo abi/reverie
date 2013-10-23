@@ -166,6 +166,16 @@ h2.logo a:hover {
   color: #f7fc6a;
 }
 
+/* Post page */
+
+.title a {
+  color: black;
+}
+
+.title a:hover {
+  color: black;
+}
+
 
 /* Login/register pages */
 

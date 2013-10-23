@@ -1,3 +1,15 @@
+mixin post(post, isBlogger)
+  div.post
+    div.contents
+      != markdown(post.contents)
+    div.bottom
+      if isBlogger
+        form(method='POST', action='/edit')
+          input(type='hidden', name='_csrf', value=token)
+          input(type='hidden', name='id', value=post.id)
+          input.edit-btn(type='submit', value='edit')
+      span.created: a(href='/post/#{post.id}') #{timeago(post.created)}
+
 doctype 5
 html
   head
