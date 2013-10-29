@@ -4,6 +4,6 @@ block head
   title #{post.user.username}'s blog
 
 block content
-  .blog-page
-    h1.title: a(href='/#{post.user.username}') #{post.user.username}'s blog
+  .post-page
+    h1.blog-title: a(href='/#{post.user.username}') #{post.user.username}'s blog
     +post(post, isBlogger)

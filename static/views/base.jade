@@ -1,5 +1,7 @@
 mixin post(post, isBlogger)
   div.post
+    if post.title
+      h2.title #{post.title}
     div.contents
       != markdown(post.contents)
     div.bottom

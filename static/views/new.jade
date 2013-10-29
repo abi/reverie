@@ -8,6 +8,8 @@ block content
   form(method='POST')
     input(type='hidden', name='_csrf', value=token)
     .field
+      input.title(type='text', name='title')
+    .field
       textarea#post(name='contents')
     .field
       input(type='submit', value='post')

@@ -168,12 +168,20 @@ h2.logo a:hover {
 
 /* Post page */
 
-.title a {
+h1.blog-title a {
   color: black;
 }
 
-.title a:hover {
+h1.blog-title a:hover {
   color: black;
+}
+
+h2.title {
+  font-size: 28px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-variant: small-caps;
 }
 
 
@@ -193,6 +201,10 @@ li.error-msg {
 
 /* New post page */
 
+input.title {
+  width: 500px;
+}
+
 textarea#post {
   height: 300px;
   width: 500px;
@@ -200,7 +212,8 @@ textarea#post {
 
 /* Blog page */
 
-.blog-page .title {
+
+ .blog-title {
   color: #333;
   font-size: 3.5em;
   font-weight: bold;
@@ -208,7 +221,7 @@ textarea#post {
   margin: 60px 0px 100px 0px;
 }
 
-.blog-page .post {
+ .post {
   border-bottom: 1px solid #CCC;
   color: #333;
   font-family: 'Tenor Sans', Helvetica, sans-serif;
@@ -219,15 +232,15 @@ textarea#post {
   width: 480px;
 }
 
-.blog-page .post .bottom {
+ .post .bottom {
   min-height: 20px;
 }
 
-.blog-page .post .bottom .edit-btn {
+ .post .bottom .edit-btn {
   float: left;
 }
 
-.blog-page .post .bottom .created {
+ .post .bottom .created {
   color: #666;
   float: right;
   font-size: 10px;

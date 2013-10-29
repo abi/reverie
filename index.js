@@ -44,6 +44,7 @@ App.prototype.init = function () {
 
     var post = new models.Post({
       contents: req.body.contents,
+      title: req.body.title,
       user: req.user
     })
 
