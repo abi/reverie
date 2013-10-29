@@ -9,6 +9,8 @@ block content
     input(type='hidden', name='_csrf', value=token)
     input(type='hidden', name='id', value='#{post.id}')
     .field
+      input.title(type='text', name='title', value='#{post.title}')
+    .field
       textarea#post(name='contents') #{post.contents}
     .field
       input.edit-btn(type='submit', value='update')

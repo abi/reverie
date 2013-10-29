@@ -75,7 +75,8 @@ App.prototype.init = function () {
   app.post('/editComplete', self.auth, function (req, res) {
     var id = req.body.id
     var contents = req.body.contents
-    models.Post.findOneAndUpdate({_id: id, user: req.user}, {contents: contents}, function (err, post) {
+    var title = req.body.title
+    models.Post.findOneAndUpdate({_id: id, user: req.user}, {contents: contents, title: title}, function (err, post) {
       if (err || post === null) {
         if (err) {
           console.error(err)
